@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome | SmartTask{% endblock %}
+
+{% block content %}
+<div class="home-container">
+
+    <h1>Welcome to SmartTask</h1>
+
+    <p class="home-subtitle">
+        A simple, secure, and professional To-Do Management Application.
+    </p>
+
+    <div class="home-features">
+        <ul>
+            <li>✔ Secure user authentication</li>
+            <li>✔ OTP-based verification</li>
+            <li>✔ Personal task management</li>
+            <li>✔ Clean and user-friendly dashboard</li>
+        </ul>
+    </div>
+
+    <div class="home-actions">
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">
+            Login
+        </a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-secondary">
+            Register
+        </a>
+    </div>
+
+</div>
+{% endblock %}

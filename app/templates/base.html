@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SmartTask{% endblock %}</title>
+
+    <!-- Responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <div class="container navbar-inner">
+
+            <!-- LEFT: LOGO -->
+            <a href="{{ url_for('home.home') }}" class="logo">SmartTask</a>
+
+            <!-- RIGHT: AUTH LINKS -->
+            <div class="nav-links">
+                <a href="{{ url_for('auth.login') }}"
+                    class="nav-btn {% if request.endpoint == 'auth.login' %}active{% endif %}">
+                    Login
+                </a>
+
+                <a href="{{ url_for('auth.register') }}"
+                    class="nav-btn {% if request.endpoint == 'auth.register' %}active{% endif %}">
+                    Register
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= FLASH MESSAGES ================= -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- ================= JS ================= -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
