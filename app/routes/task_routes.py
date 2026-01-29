@@ -70,27 +70,22 @@ def edit_task(task_id):
     task = Task.query.filter_by(
         id=task_id,
         user_id=user_id
-    ).first()
-
-    if not task:
-        flash("Task not found or unauthorized", "danger")
-        return redirect(url_for("tasks.dashboard"))
+    ).first_or_404()
 
     form = TaskForm(obj=task)
 
     if form.validate_on_submit():
         task.title = form.title.data
         task.description = form.description.data
-
         db.session.commit()
 
         flash("Task updated successfully", "success")
         return redirect(url_for("tasks.dashboard"))
 
     return render_template(
-        "tasks/dashboard.html",
-        edit_task=task,
-        form=form
+        "tasks/edit_task.html",
+        form=form,
+        task=task
     )
 
 @task_bp.route("/toggle/<int:task_id>")

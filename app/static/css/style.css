@@ -123,6 +123,21 @@ body {
     background-color: #991b1b;
 }
 
+/* =====================
+   LOGOUT BUTTON (RED)
+===================== */
+.logout-btn {
+    background-color: #dc2626;   /* red */
+    color: #ffffff !important;
+    border: none;
+}
+
+.logout-btn:hover {
+    background-color: #b91c1c;   /* darker red */
+    color: #ffffff;
+}
+
+
 /* =======================
    FLASH MESSAGES
 ======================= */

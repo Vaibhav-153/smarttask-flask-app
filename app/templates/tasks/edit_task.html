@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<h2>Edit Task</h2>
+
+<form method="POST"
+      action="{{ url_for('tasks.edit_task', task_id=task.id) }}">
+
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.description.label }}
+        {{ form.description(class="form-control") }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Update Task
+    </button>
+
+    <a href="{{ url_for('tasks.dashboard') }}" class="btn btn-secondary">
+        Cancel
+    </a>
+</form>
+{% endblock %}

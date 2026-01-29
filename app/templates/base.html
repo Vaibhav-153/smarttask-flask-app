@@ -1,43 +1,62 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}SmartTask{% endblock %}</title>
 
-    <!-- Responsive meta -->
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Main CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-    <!-- ================= NAVBAR ================= -->
+    <!-- ============ NAVBAR ============ -->
     <nav class="navbar">
         <div class="container navbar-inner">
 
-            <!-- LEFT: LOGO -->
+            <!-- Logo -->
             <a href="{{ url_for('home.home') }}" class="logo">SmartTask</a>
 
-            <!-- RIGHT: AUTH LINKS -->
+            <!-- Navigation Links -->
             <div class="nav-links">
-                <a href="{{ url_for('auth.login') }}"
-                    class="nav-btn {% if request.endpoint == 'auth.login' %}active{% endif %}">
-                    Login
-                </a>
+                {% if session.get("user_id") %}
 
-                <a href="{{ url_for('auth.register') }}"
-                    class="nav-btn {% if request.endpoint == 'auth.register' %}active{% endif %}">
-                    Register
-                </a>
+                    <a href="{{ url_for('tasks.dashboard') }}"
+                       class="nav-btn {% if request.endpoint == 'todo.dashboard' %}active{% endif %}">
+                        Dashboard
+                    </a>
+
+                    <a href="{{ url_for('profile.view_profile') }}"
+                       class="nav-btn {% if request.endpoint == 'profile.view_profile' %}active{% endif %}">
+                        Profile
+                    </a>
+
+                    <a href="{{ url_for('auth.logout') }}" class="nav-btn logout-btn">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{{ url_for('auth.login') }}"
+                       class="nav-btn {% if request.endpoint == 'auth.login' %}active{% endif %}">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('auth.register') }}"
+                       class="nav-btn {% if request.endpoint == 'auth.register' %}active{% endif %}">
+                        Register
+                    </a>
+
+                {% endif %}
             </div>
 
         </div>
     </nav>
 
-    <!-- ================= FLASH MESSAGES ================= -->
+    <!-- ============ FLASH MESSAGES ============ -->
     <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -50,13 +69,12 @@
         {% endwith %}
     </div>
 
-    <!-- ================= MAIN CONTENT ================= -->
+    <!-- ============ MAIN CONTENT ============ -->
     <main class="container">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- ================= JS ================= -->
+    <!-- JS -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
