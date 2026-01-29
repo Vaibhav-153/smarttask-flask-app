@@ -9,8 +9,7 @@ This project is designed to be **deployment-ready and interview-ready**, followi
 ---
 
 ## 🌐 Live Application
-🔗 Deployed on Render  
-(Add your Render URL here after deployment)
+🔗 https://smarttask-elrs.onrender.com
 
 ---
 
