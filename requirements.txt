@@ -3,4 +3,4 @@ Flask-SQLAlchemy
 Flask-WTF
 email-validator
 Werkzeug
-python-dotenv
+gunicorn
